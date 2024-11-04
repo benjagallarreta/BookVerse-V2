@@ -1,0 +1,18 @@
+{% extends 'baseCompra.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <title>Compra Fallida</title>
+    <meta http-equiv="refresh" content="5;url=/">
+    <link rel="stylesheet" href="{% static 'Carrito/errorCompra.css' %}">
+</head>
+<body>
+    <div class="container error">
+        <h1>Lo sentimos</h1>
+        <p>No se pudo realizar su compra, por favor.</p>
+        <p>Intente mas tarde.</p>
+        <p>No recargue la pagina. Será redirigido al inicio automaticamente</p>
+        
+    </div>
+</body>
+{% endblock %}

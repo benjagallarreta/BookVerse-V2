@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'Pedido/detalle.css' %}">
+
+<div class="containerPedido">
+    <!-- Encabezado de la Factura -->
+    <div class="header">
+        <h1>Factura de Pedido</h1>
+        <p>Número de Compra: {{ pedido.numero_compra }}</p>
+    </div>
+
+    <!-- Detalles del Cliente -->
+    <div class="details">
+        <p><strong>Cliente:</strong> {{ usuario.username }}</p>
+        <p><strong>Correo Electrónico:</strong> {{ usuario.email }}</p>
+        <p><strong>Fecha del Pedido:</strong> {{ pedido.fecha }}</p>
+        <p><strong>Estado:</strong> {{ pedido.estado }}</p>
+    </div>
+
+    <!-- Detalles de los Libros -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Libro</th>
+                <th>Cantidad</th>
+                <th>Precio grupal</th>
+            </tr>
+        </thead>
+        {% for libro in libros %}
+        <tbody>
+            <tr>
+                <td>{{ libro.libro }}</td>
+                <td>{{ libro.cantidad }}</td>
+                <td>{{ libro.precio }}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <!-- Total de la Factura -->
+    <div class="total">
+        <p><strong>Total:</strong> {{ pedido.monto_total }}</p>
+    </div>
+</div>
+  
+
+
+{% endblock %}

@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #520000, #ff7eb3);
+    color: white;
+}
+
+.container {
+    text-align: center;
+    background: #bc4749;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.error h1 {
+    font-size: 2.5em;
+    margin: 0 0 20px;
+}
+
+.error p {
+    font-size: 1.2em;
+    margin: 0 0 10px; /* Ajusta este valor para cambiar el espacio entre los párrafos */
+}

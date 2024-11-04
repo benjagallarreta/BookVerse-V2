@@ -1,0 +1,65 @@
+{% load static %}
+
+<link href="{% static 'Home/navbar.css' %}" rel="stylesheet"/> 
+
+<nav class="navbar">
+    <div class="navbar-container">
+
+        <div class="navbar-title">
+            <a href="/">BookVerse</a>
+        </div>
+
+        <div class="navbar-category-dropdown">
+            <li class="navbar-item">
+                <button class="dropdown-button" href="#">Géneros</button>
+                <ul class="genre-dropdown">
+                    <li><a href="{% url 'libros_por_genero' genero='Historical Fiction' %}">Ficción Histórica</a></li>
+                    <li><a href="{% url 'libros_por_genero' genero='LGBTQ+' %}">LGBTQ+</a></li>
+                    <li><a href="{% url 'libros_por_genero' genero='Science Fiction' %}">Ciencia Ficción</a></li>
+                    <li><a href="{% url 'libros_por_genero' genero='Romance' %}">Romance</a></li>
+                    <li><a href="{% url 'libros_por_genero' genero='Mystery' %}">Misterio</a></li>
+                    <li><a href="{% url 'libros_por_genero' genero='Contemporary Fiction' %}">Ficción Contemporánea</a></li>
+                    <li><a href="{% url 'libros_por_genero' genero='Fantasy' %}">Fantasía</a></li>
+                    <li><a href="{% url 'libros_por_genero' genero='Horror' %}">Horror</a></li>
+                </ul>                
+            </li>
+        </div>
+
+        <div class="search-bar">
+            <form method="get" action="{% url 'home' %}">
+                <input class="search-input" type="text" placeholder="Buscar...">
+                <button class="search-button" type="submit">Buscar</button>
+            </form>     
+        </div>    
+        
+        <div class="cart-button-container">
+            <button onclick="window.location.href='{% url 'carrito' %}'" class="cart-button">Carrito</button>
+        </div>
+        
+        <div class="auth-buttons">
+            {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="logout-button" type="submit">Cerrar Sesión</button>
+                </form>
+            {% else %}
+                <button onclick="window.location.href='{% url 'login' %}'" class="login-button">Iniciar Sesión</button>
+            {% endif %}
+        </div>    
+
+        <div>
+            {% if user.is_authenticated %}
+            <ul class="user-menu">
+                <li class="navbar-item">
+                    <button class="profile-button" href="#">Mi Perfil</button>
+                    <ul class="profile-dropdown">
+                        <li><a href="{% url 'perfil_usuario' %}">Mi Perfil</a></li>
+                        <li><a href="{% url 'wishlist' %}">Mi Lista de Deseados</a></li>
+                    </ul>                
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+
+    </div>
+</nav>

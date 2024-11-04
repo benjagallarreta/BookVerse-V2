@@ -1,0 +1,13 @@
+.wishlist-icon {
+    font-size:100rem; /* Ajusta el tamaño según tus necesidades */
+    color: #e0245e; /* Color similar al de Instagram, puedes ajustar esto */
+    transition: color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+.wishlist-icon.text-danger {
+    color: #e0245e; /* Color cuando el ítem está en la wish list */
+}
+
+.text-danger {
+    color: red;
+}

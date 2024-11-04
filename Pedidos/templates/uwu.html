@@ -1,0 +1,12 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h1>Cambiar estado de los pedidos seleccionados</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Aplicar cambio de estado</button>
+</form>
+
+{% endblock %}

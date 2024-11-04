@@ -1,0 +1,96 @@
+/* Estilo para la tarjeta de reseñas existentes */
+.card.shadow-2-strong.custom-card {
+    background-color: #469D89 !important;
+    color: #ffffff !important;
+    border-radius: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    max-width: 80%; /* Adjust this value to change the width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card.shadow-2-strong.custom-card .card-body {
+    padding: 2rem;
+}
+
+/* Estilo para cada reseña individual */
+.resena-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Ajustar el tamaño del textarea */
+.review-form-card textarea.form-control {
+    width: 100%;
+    min-height: 120px;
+    max-height: 300px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .card.shadow-2-strong.custom-card {
+        max-width: 90%;
+    }
+    .review-form-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .card.shadow-2-strong.custom-card {
+        max-width: 95%;
+    }
+    .review-form-card {
+        padding: 1rem;
+    }
+}
+
+/* Estilo del textarea */
+textarea.form-control {
+    width: 100%;
+    min-height: 100px;
+    padding: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    resize: vertical;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.5;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+textarea.form-control:focus {
+    outline: none;
+    border-color: #488e97;
+    box-shadow: 0 0 8px rgba(72, 142, 151, 0.5);
+}
+
+/* Media query para pantallas grandes */
+@media (min-width: 992px) {
+    .resenia-container {
+        max-width: 1050px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.resumen-reseñas ul {
+    list-style-type: none;
+    padding: 0;
+}
+.resumen-reseñas li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.resumen-reseñas .estrellas {
+    margin-right: 10px;
+    color: #ffc107;
+}
+.resumen-reseñas .porcentaje {
+    margin-left: 5px;
+}

@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% load static %}
+{% block content %}
+
+<head>
+    <title>BookVerse | Libro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'Home/Item.css' %}">
+</head>
+
+<body>
+    <!-- Product section-->
+    <section class="py-5" id="libro-{{ libro.isbn }}">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6">
+                    <img class="card-img-top mb-5 mb-md-0" src="{{ libro.portada }}" alt="Portada del libro" />
+                </div>
+                <div class="col-md-6">
+                    <div class="small mb-1">ISBN: {{ libro.isbn }} </div>
+                    <h1 class="display-5 fw-bolder">{{ libro.titulo }}</h1>
+                    <div class="fs-5 mb-5">
+                        <span>${{ libro.precio }}</span>
+                    </div>
+                    <p class="lead">{{ libro.sinopsis }}</p>
+                    <div class="d-flex">
+                        <div class="text-center">
+                            <form action="{% url 'agregar_libro' libro.isbn %}#libro-{{ libro.isbn }}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-dark mt-auto">Agregar al carrito</button>
+                            </form>
+                            <i id="wishlist-icon-{{ libro.isbn }}" class="fas fa-heart ms-2" onclick="AgregarLibroWishList('{{ libro.isbn }}')" style="cursor: pointer;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="card resumen-reseñas" style="border: 1px solid #ddd; padding: 15px; border-radius: 8px;">
+        <h3>Resumen de reseñas</h3>
+        <p>El promedio de estrellas es: {{ promedio_estrellas|default:"No hay reseñas positivas." }}</p>
+        <!--aca debe ir la logica para obtener el porcentaje de reseña positivas-->
+    </div>
+    
+
+<!-- Tarjeta de reseñas y formulario -->
+<div class="card shadow-2-strong custom-card mb-5">
+    <div class="card-body p-5">
+
+        <!-- Formulario para agregar reseña -->
+        <section class="py-3">
+            <div class="container px-5 px-lg-5">
+                <div class="review-form-card">
+                    <h3>Deja tu reseña</h3>
+                    <form 
+                        {% if not user.is_authenticated %}
+                        action="{% url 'login' %}" 
+                        {% else %}
+                        action="{% url 'agregar_resena' isbn=libro.isbn %}" 
+                        {% endif %} 
+                        method="post">
+                        
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            {{ form.comentario }}
+                        </div>
+                        <div class="form-group estrellas mb-3">
+                            <input type="radio" id="star-1" name="estrellas" value="1" {% if not user.is_authenticated %} disabled {% endif %}/>
+                            <label for="star-1" title="1 estrella">
+                                <i class="fas fa-star"></i>
+                            </label>
+                            <input type="radio" id="star-2" name="estrellas" value="2" {% if not user.is_authenticated %} disabled {% endif %}/>
+                            <label for="star-2" title="2 estrellas">
+                                <i class="fas fa-star"></i>
+                            </label>
+                            <input type="radio" id="star-3" name="estrellas" value="3" {% if not user.is_authenticated %} disabled {% endif %}/>
+                            <label for="star-3" title="3 estrellas">
+                                <i class="fas fa-star"></i>
+                            </label>
+                            <input type="radio" id="star-4" name="estrellas" value="4" {% if not user.is_authenticated %} disabled {% endif %}/>
+                            <label for="star-4" title="4 estrellas">
+                                <i class="fas fa-star"></i>
+                            </label>
+                            <input type="radio" id="star-5" name="estrellas" value="5" {% if not user.is_authenticated %} disabled {% endif %}/>
+                            <label for="star-5" title="5 estrella">
+                                <i class="fas fa-star"></i>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            {% if user.is_authenticated %}
+                            Enviar reseña
+                            {% else %}
+                            Iniciar sesión para reseñar
+                            {% endif %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contenedor de reseñas con scroll -->
+        <!-- Sección de reseñas -->
+<h3>Reseñas</h3>
+<div class="resena-list">
+    {% for resena in resenas %}
+    <div class="resena-card mb-4">
+        <strong>{{ resena.usuario.username }}</strong> - <small>{{ resena.fecha|date:"d M Y" }}</small>
+        <div>
+            {% for i in '12345'|make_list %}
+            {% if forloop.counter <= resena.estrellas %}
+            <i class="fas fa-star"></i>
+            {% else %}
+            <i class="far fa-star"></i>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <p>{{ resena.comentario }}</p>
+    </div>
+    {% empty %}
+    <p>Aún no hay reseñas para este libro.</p>
+    {% endfor %}
+</div>
+
+    </div>
+</div>
+
+</body>
+{% endblock %}

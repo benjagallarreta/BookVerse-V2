@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'Carrito/Carrito.css' %}">
+<link rel="stylesheet" href="{% static 'Carrito/payment.css' %}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<div class="payment-container" style="box-shadow: 20px 40px 80px rgba(0, 0, 0, 0.2); transform: scale(1.1);"> <!-- Agranda el contenido -->
+    <h5 class="mb-4" style="font-size: 1.5rem;">Método de pago</h5>
+    <form method="post" action="{% url 'generar_pedido' %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-4" style="margin-top: 30px;">
+                <div class="payment-method-item">
+                    <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" checked />
+                    <label class="form-check-label" for="creditCard" style="font-size: 1rem;">
+                        <i class="fab fa-cc-mastercard fa-2x text-body pe-2"></i>Tarjeta de crédito
+                    </label>
+                </div>
+                <div class="payment-method-item">
+                    <input class="form-check-input" type="radio" name="paymentMethod" id="debitCard" />
+                    <label class="form-check-label" for="debitCard" style="font-size: 1rem;">
+                        <i class="fab fa-cc-visa fa-2x text-body pe-2"></i>Tarjeta de débito
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-5" style="margin-top: 0;">
+                <div class="mb-3">
+                    <label for="{{ form.name_on_card.id_for_label }}" class="form-label" style="font-size: 1rem;">Nombre en la tarjeta</label>
+                    {{ form.name_on_card }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.card_number.id_for_label }}" class="form-label" style="font-size: 1rem;">Número de tarjeta</label>
+                    {{ form.card_number }}
+                </div>
+                <div class="row">
+                    <div class="col-6 mb-2">
+                        <label for="{{ form.expiry_date.id_for_label }}" class="form-label" style="font-size: 1rem;">Vencimiento</label>
+                        {{ form.expiry_date }}
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="{{ form.card_code.id_for_label }}" class="form-label" style="font-size: 1rem;">CVV</label>
+                        {{ form.card_code }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-top: 0;" >
+                <div class="border rounded p-4 mb-4" style="background-color: #f2f4f3;">
+                    <div class="d-flex justify-content-between mb-3" style="font-weight: 500; font-size: 1rem;">
+                        <p class="mb-2">TOTAL :</p>
+                        <p class="mb-2">${{ total }}</p>
+                    </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg btn-payment" style="background-color: #132A13; color: white; border-color: #132A13;">
+                            <span>REALIZAR PAGO</span>
+                        </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

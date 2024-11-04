@@ -1,0 +1,76 @@
+
+.containerPedido {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding-bottom: 50px; /* Añadir un padding bottom para dar espacio */
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 26px;
+  color: #2f855a;
+}
+
+.details {
+  margin-bottom: 20px;
+  background-color: #e6f4ea;
+  padding: 10px;
+  border-left: 5px solid #2f855a;
+}
+
+.details p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.table th {
+  background-color: #2f855a;
+  color: #ffffff;
+  padding: 10px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.total {
+  text-align: right;
+  font-size: 16px;
+  margin-top: 10px;
+  color: #2f855a;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 12px;
+  color: #777;
+}
+
+@media print {
+  .container {
+    border: none;
+    padding: 0;
+  }
+}

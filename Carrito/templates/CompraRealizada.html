@@ -1,0 +1,23 @@
+{% extends 'baseCompra.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'Carrito/CompraRealizada.css' %}">
+<head>
+    <title>Pedido Realizado</title>
+   
+</head>
+<body>
+    <div class="container">
+        <h1>¡FELICIDADES!</h1>
+        <p>Su pedido se ha realizado con éxito</p>
+        <h4>Revise su correo electrónico para proceder al pago. Muchas Gracias por usar BookVerse! :D</h4>
+
+        <!-- Botones de navegación -->
+        <div class="button-container">
+            <a href="{% url 'home' %}" class="button">Volver a Inicio</a>
+            <a href="{% url 'perfil_usuario' %}" class="button">Ver Mis Pedidos</a>
+        </div>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% load static %}
+{% block content %}
+
+<head>
+    <title>BookVerse | Inicio de sesión</title>
+    <link rel="stylesheet" href="{% static 'Usuario/login.css' %}">
+</head>
+
+<body class="img js-fullheight" style="background-image: url({% static 'Imagenes/library_background.jpg' %})">
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">¡Bienvenido a BookVerse!</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="login-wrap p-0">
+                        <h3 class="mb-4 text-center">¿Ya tiene una cuenta?</h3>
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <strong>Error:</strong> Por favor, revise su nombre de usuario y contraseña e inténtelo de nuevo.
+                            </div>
+                        {% endif %}
+                        <form method="post" action="{% url 'login' %}" class="signin-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ form.username }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.password }}
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary submit px-3">Iniciar sesión</button>
+                            </div>
+                        </form>
+                        <div class="form-group d-flex justify-content-center">
+                            <div class="w-50 text-center">
+                                <a href="{% url 'registro' %}" style="color: #fff">Crear una cuenta!</a>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+{% endblock %}
