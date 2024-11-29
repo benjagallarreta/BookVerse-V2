@@ -1,0 +1,223 @@
+/* Modern CSS Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  body, h1, h2, h3, h4, p, figure, blockquote, dl, dd {
+    margin: 0;
+  }
+  
+  /* Custom Properties */
+  :root {
+    --color-primary: #4a4e69;
+    --color-secondary: #9a8c98;
+    --color-accent: #c9ada7;
+    --color-background: #f2e9e4;
+    --color-text: #22223b;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Base Styles */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+  
+  /* Ajustes para la barra de navegación */
+nav {
+  background-color: var(--color-primary);
+  padding: 1.2rem 5%; /* Ajusta el padding para reducir el espacio vertical */
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Alinea verticalmente los elementos */
+  box-shadow: var(--shadow);
+}
+  
+  .navbar-left, .navbar-mid, .navbar-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Logo Styles */
+  .titulo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-background);
+    text-decoration: none;
+    margin-right: 1.5rem; /* Reduce el espacio entre el logo y las categorías */
+    line-height: 1; /* Elimina posibles desajustes de altura */
+  }
+  
+  .titulo:hover {
+    color: var(--color-accent);
+  }
+  
+  /* Categories Dropdown */
+  .categorias {
+    display: flex;
+    align-items: center; /* Asegura la alineación vertical */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.categorias > li {
+    position: relative;
+}
+
+.categorias > li > a {
+    color: var(--color-background);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.categorias > li > a:hover {
+    background-color: var(--color-secondary);
+}
+
+/* Dropdown Styles */
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-primary);
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    box-shadow: var(--shadow);
+    min-width: 200px;
+    z-index: 10;
+}
+
+.categorias > li:hover .dropdown,
+.opciones_usuario > li:hover .dropdown {
+    display: block;
+}
+
+.dropdown li {
+    list-style: none;
+}
+
+.dropdown li a {
+    color: var(--color-background);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown li a:hover {
+    background-color: var(--color-secondary);
+}
+  
+  /* Search Bar Styles */
+  .barra_busqueda {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px 0 0 20px;
+    font-size: 1rem;
+    width: 300px;
+    line-height: 1; /* Elimina posibles desajustes */
+  }
+  
+  .barra_busqueda:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-accent);
+  }
+  
+  .boton {
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    line-height: 1; /* Elimina posibles desajustes */
+    font-size: 1rem;
+  }
+  
+  .boton_login {
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    margin-left: 1rem; /* Espaciado entre botones */
+    line-height: 1; /* Asegura altura consistente */
+    font-size: 1rem;
+    border-radius: 25px;
+    margin-right: 5mm;
+  }
+
+  .boton_login:hover {
+    background-color: var(--color-accent);
+  }
+
+  .boton:first-of-type {
+    border-radius: 0 20px 20px 0;
+  }
+  
+  .boton:hover {
+    background-color: var(--color-accent);
+  }
+  
+  /* User Options */
+  .opciones_usuario {
+    display: flex;
+    align-items: center; /* Centra verticalmente el avatar */
+    margin: 0;
+    padding: 0;
+}
+
+.opciones_usuario > li {
+    list-style: none;
+    position: relative;
+}
+
+.opciones_usuario img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+
+}
+
+.opciones_usuario:hover img {
+    transform: scale(1.1);
+}
+
+.opciones_usuario .dropdown {
+    right: 0;
+    left: auto;
+}
+
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .navbar-left, .navbar-mid, .navbar-right {
+      margin-bottom: 1rem;
+    }
+  
+    .barra_busqueda {
+      width: 100%;
+    }
+  
+    .boton {
+      width: 100%;
+      margin-top: 0.5rem;
+      border-radius: 20px;
+    }
+  
+    .opciones_usuario {
+      align-self: flex-end;
+    }
+  }

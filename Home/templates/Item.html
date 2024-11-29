@@ -5,13 +5,11 @@
 
 <head>
     <title>BookVerse | Libro</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'Home/Item.css' %}">
 </head>
 
 <body>
     <!-- Product section-->
-    <section class="py-5" id="libro-{{ libro.isbn }}">
+    <section class="py-1" id="libro-{{ libro.isbn }}">
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6">
@@ -38,7 +36,7 @@
         </div>
     </section>
 
-    <div class="card resumen-reseñas" style="border: 1px solid #ddd; padding: 15px; border-radius: 8px;">
+    <div class="card resumen-reseñas " style="border: 1px solid #ddd; padding: 30px; border-radius: 10px;">
         <h3>Resumen de reseñas</h3>
         <p>El promedio de estrellas es: {{ promedio_estrellas|default:"No hay reseñas positivas." }}</p>
         <!--aca debe ir la logica para obtener el porcentaje de reseña positivas-->

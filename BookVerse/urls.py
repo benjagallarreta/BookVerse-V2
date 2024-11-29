@@ -11,7 +11,7 @@ urlpatterns = [
     #home y libro
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),   
-    path('libros/<str:genero>/', LibrosPorGeneroView.as_view(), name='libros_por_genero'),
+    path('libros/<path:genero>/', LibrosPorGeneroView.as_view(), name='libros_por_genero'),
     #path('libro/<str:isbn>/', LibroDetailView.as_view(), name='libro_detallado'),
 
     #usuario

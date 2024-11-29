@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+4FmrP6Ph/6zHO3/bboV5B/02k8Zg/YfFjFf3I5JiS+teRY" crossorigin="anonymous">
-    <link href="{% static 'Home/Home.css' %}" rel="stylesheet" /> 
 
     <div class="container py-5">
         <div class="row">
@@ -24,7 +21,7 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder"><a href="{% url 'libro_detallado' isbn=libro.isbn %}">{{ libro.titulo }}</a></h5>
+                                    <h5 class="fw-bolder"><a href="{% url 'detalle_libro' isbn=libro.isbn %}">{{ libro.titulo }}</a></h5>
                                     <h6> {{ libro.autor }}</h6>
                                     <!-- Product price-->
                                     {{ libro.precio }}

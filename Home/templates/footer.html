@@ -26,7 +26,9 @@
         <div class="row mt-4">
             <div class="col text-center">
                 <p class="mb-0">&copy; 2024 BookVerse - Todos los derechos reservados</p>
-                <a href="{% url 'acceso_admin' %}">Acceso para Administradores</a>
+                {% if user.is_staff %}
+                    <a href="{% url 'acceso_admin' %}">Acceso para Administradores</a>
+                {% endif %}
             </div>
         </div>
     </div>

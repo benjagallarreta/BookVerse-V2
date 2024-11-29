@@ -1,6 +1,5 @@
 
 from decimal import Decimal
-
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, View
@@ -138,4 +137,4 @@ class PaymentView(View):
             'form': form,
             'total': total
         }
-        return render(request, self.template_name, context)
+        return render(request, 'payment.html', {'form': form})
