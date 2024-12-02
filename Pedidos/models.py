@@ -16,7 +16,7 @@ class Pedido(models.Model):
     monto_total = models.DecimalField(max_digits=10, decimal_places=2)
     fecha = models.DateField(auto_now_add=True)
     estado = models.CharField(  # Cambia max_length a 1
-        max_length=1,  # Cambiar aquí a 1 para que coincida con los valores de EstadoPedido
+        max_length=10,  # Cambiar aquí a 1 para que coincida con los valores de EstadoPedido
         choices=EstadoPedido.choices,
         default=EstadoPedido.PENDIENTE,
     )
