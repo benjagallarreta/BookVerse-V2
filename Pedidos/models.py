@@ -2,20 +2,13 @@
 import uuid
 from django.db import models
 from Usuario.models import Usuario
-from Home.models import Libro
-# models.py en la aplicación pedidos
-import uuid
-from django.db import models
-from Usuario.models import Usuario
-from Home.models import Libro
 
-from django.db import models
 
 class EstadoPedido(models.TextChoices):  # Define los diferentes estados que puede tomar un pedido
-    PENDIENTE = 'P', 'Pendiente'
-    ENVIADO = 'E', 'Enviado'
-    ENTREGADO = 'F', 'Entregado'
-    CANCELADO = 'C', 'Cancelado'
+    PENDIENTE = 'Pendiente', 'P'
+    ENVIADO = 'Enviado', 'E'
+    ENTREGADO = 'Entregado', 'Et'
+    CANCELADO = 'Cancelado', 'C'
 
 class Pedido(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)  # Asumiendo que Usuario está definido en tu modelo
