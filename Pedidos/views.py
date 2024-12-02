@@ -1,9 +1,7 @@
-from decimal import Decimal
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from Carrito.models import Cart
-from Pedidos.models import Pedido, DetalleLibro,Libro
-from Usuario.models import Usuario 
+from Pedidos.models import Pedido, DetalleLibro
 
 @login_required #Esto de aca debe de cambiar a clase
 def realizar_compra(request):

@@ -1,12 +1,8 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 from django.views import View
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 from django.db.models import Q
 from Home.models import Libro
-from Reseña.forms import ReseñaForm
-from Reseña.models import  Reseña
-
-
 
 class HomeView(ListView):
     model = Libro
