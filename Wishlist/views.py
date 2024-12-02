@@ -1,6 +1,5 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse
 from django.views.generic import ListView, View
 from Carrito.models import Cart
 from Pedidos.models import Libro
