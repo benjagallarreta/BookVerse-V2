@@ -1,12 +1,9 @@
 from django.contrib import messages
 from django.urls import reverse, reverse_lazy
-
 from django.shortcuts import redirect, render
-
 from django.views import View
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login, authenticate, logout
 from Pedidos.models import Pedido
