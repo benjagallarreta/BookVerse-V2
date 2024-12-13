@@ -5,8 +5,8 @@ from .models import Libro
 class LibroAdmin(admin.ModelAdmin):
     actions = ['vaciar_stock']  # Incluir vaciar_stock en la lista de acciones
     search_fields = ('isbn', 'titulo', 'autor', 'editorial', 'genero')
-    list_display = ('titulo', 'autor', 'editorial', 'precio', 'genero', 'isbn', 'stock')  # Agregar 'stock' a list_display
-
+    list_display = ('titulo', 'autor', 'precio', 'genero', 'isbn', 'stock')  # Agregar 'stock' a list_display
+    list_filter = ("genero","autor")
     # Acción para vaciar el stock
     def vaciar_stock(self, request, queryset):
         queryset.update(stock=0)  # Cambia el valor del stock a 0
