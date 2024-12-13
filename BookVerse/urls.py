@@ -14,8 +14,6 @@ urlpatterns = [
     path('home/', HomeView.as_view(), name='home_redirect'),  # Opcional para el cerrar sesion de los admins
     path('libros/<path:genero>/', LibrosPorGeneroView.as_view(), name='libros_por_genero'),
 
-    #path('libro/<str:isbn>/', LibroDetailView.as_view(), name='libro_detallado'),
-
     #usuario
     path('perfil/', UsuarioDetailView.as_view(), name='perfil_usuario'),
     path('editar-perfil/', UsuarioUpdateView.as_view(), name='editar_usuario'),
@@ -44,7 +42,6 @@ urlpatterns = [
     path('agregar_a_wishlist/<str:isbn>/', AgregarLibroWishList.as_view(), name='agregar_a_wishlist'),
     path('eliminar_de_wishlist/<str:isbn>/', EliminarDeWishListView.as_view(), name='eliminar_de_wishlist'),
     path('agregar_al_carrito_desde_wishlist/<str:isbn>/', AgregarAlCarritoDesdeWishList.as_view(), name='agregar_al_carrito_desde_wishlist'),
-
 
     #reseña
     path('libro/<str:isbn>/agregar-resena/', AgregarResenaView.as_view(), name='agregar_resena'),

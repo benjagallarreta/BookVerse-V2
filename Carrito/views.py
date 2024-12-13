@@ -28,7 +28,7 @@ class CarritoView(ListView):
         context['carrito'] = Cart.objects.filter(usuario=self.request.user)
         # Calcula el total del carrito
         cart_items = context['carrito']
-        total = sum(item.precio for item in cart_items)  # Asegúrate de que item.precio sea numérico
+        total = sum(item.precio for item in cart_items)
         # Agrega el total al contexto
         context['total'] = total
         return context

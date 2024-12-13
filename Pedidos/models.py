@@ -1,10 +1,7 @@
-# models.py en la aplicación pedidos
 import uuid
 from django.db import models
 from Usuario.models import Usuario
 from Home.models import Libro
-
-
 
 class EstadoPedido(models.TextChoices):  # Define los diferentes estados que puede tomar un pedido
     PENDIENTE = 'Pendiente', 'P'

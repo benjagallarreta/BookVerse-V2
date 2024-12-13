@@ -19,7 +19,7 @@ class Libro(models.Model):
     cant_paginas = models.PositiveSmallIntegerField(null=True, blank=True)
     dimension = models.CharField(max_length=50, null=True, blank=True)
     encuadernacion = models.CharField(max_length=50, null=True, blank=True)
-    tipo = models.CharField(max_length=15, choices=TipoLibro.choices, default=TipoLibro.INDEFINIDO)
+    tipo = models.CharField(max_length=15, choices=TipoLibro.choices, default=TipoLibro.FISICO)
     narrador = models.CharField(max_length=100, null=True, blank=True)
     duracion = models.SmallIntegerField(null=True, blank=True)
     extension_archivo = models.CharField(max_length=10, null=True, blank=True)
