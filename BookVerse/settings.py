@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_interface', #es para la interface del admin
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +44,10 @@ INSTALLED_APPS = [
     'Home',
     'Wishlist',
     'Reseña',
+    'colorfield', #es para los colores del admin
 ]
+
+X_FRAME_OPTIONS='SAMEORIGIN' #Es para la edicion del admin pero para la version 3 de django
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -146,8 +150,8 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/home'
-LOGOUT_REDIRECT_URL = '/home'
+LOGIN_REDIRECT_URL = '/home/'
+LOGOUT_REDIRECT_URL = '/home/'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',

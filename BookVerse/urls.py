@@ -11,7 +11,9 @@ urlpatterns = [
     #home y libro
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),   
+    path('home/', HomeView.as_view(), name='home_redirect'),  # Opcional para el cerrar sesion de los admins
     path('libros/<path:genero>/', LibrosPorGeneroView.as_view(), name='libros_por_genero'),
+
     #path('libro/<str:isbn>/', LibroDetailView.as_view(), name='libro_detallado'),
 
     #usuario
