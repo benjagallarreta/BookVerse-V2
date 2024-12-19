@@ -8,6 +8,7 @@ from Home.models import Libro
 from Reseña.models import Reseña  
 from django.db.models import Avg
 from Reseña.forms import ReseñaForm
+from Wishlist.models import WishList
 
 class DetailLibroView(View):
     def get(self, request,isbn):
@@ -35,6 +36,13 @@ class DetailLibroView(View):
             'form': ReseñaForm(),
         }
 
+        # Agregar información de wishlist si el usuario está autenticado
+        if request.user.is_authenticated:
+            wishlist_items = WishList.objects.filter(
+                usuario=request.user
+            ).values_list('libro__isbn', flat=True)
+            context['wishlist_items'] = list(wishlist_items)
+            
         # Retornar el resultado a la plantilla Item.html
         return render(request, 'Item.html', context)
 
