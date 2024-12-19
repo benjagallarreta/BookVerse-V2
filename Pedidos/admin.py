@@ -13,6 +13,7 @@ class PedidoAdmin(admin.ModelAdmin):
     actions = ['cambiar_estado_a_pendiente','cambiar_estado_a_enviado','cambiar_estado_a_entregado','cambiar_estado_a_cancelado']
     search_fields = ('usuario__username', 'numero_compra', 'correo', 'estado')
     list_display = ('usuario', 'numero_compra', 'correo','fecha','estado')
+    list_filter = ('estado',)
 
     def cambiar_estado_a_pendiente(modeladmin, request, queryset):
         queryset.update(estado=EstadoPedido.PENDIENTE)

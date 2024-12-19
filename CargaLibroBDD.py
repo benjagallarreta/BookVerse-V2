@@ -42,7 +42,6 @@ def cargar_libros(genero):
         portada = info.get('imageLinks', {}).get('thumbnail', None)
         editorial = info.get('publisher', 'Editorial desconocida')
         precio = random.randint(12000, 40000)
-        # Genera un valor de stock aleatorio entre 0 y 100
         stock = random.randint(0, 100)
 
         Libro.objects.create(
@@ -52,16 +51,14 @@ def cargar_libros(genero):
             isbn=isbn,
             genero=genero,
             editorial=editorial,
-            portada=portada,
+            portada=portada,  # Aquí se guarda la URL externa de la portada
             stock=stock,
             precio=precio
         )
-
-        print(f"Libro '{titulo}' creado con stock {stock}.")
-
+        print(f"Libro '{titulo}' creado.")
 
 # Cargar al menos 1000 libros distribuidos en los 10 géneros
-libros_por_genero = 100
+libros_por_genero = 1000
 for genero in nombres_generos:
     cargar_libros(genero)
 
