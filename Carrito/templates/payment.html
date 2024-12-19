@@ -8,7 +8,7 @@
 
 <div class="payment-container" style="box-shadow: 20px 40px 80px rgba(0, 0, 0, 0.2); transform: scale(1.1);"> <!-- Agranda el contenido -->
     <h5 class="mb-4" style="font-size: 1.5rem;">Método de pago</h5>
-    <form method="post" action="{% url 'generar_pedido' %}">
+    <form method="post" action="{% url 'pago' %}">
         {% csrf_token %}
         <div class="row">
             <div class="col-md-4" style="margin-top: 30px;">
@@ -29,19 +29,40 @@
                 <div class="mb-3">
                     <label for="{{ form.name_on_card.id_for_label }}" class="form-label" style="font-size: 1rem;">Nombre en la tarjeta</label>
                     {{ form.name_on_card }}
+                    {% if form.name_on_card.errors %}
+                        <div class="alert alert-danger">
+                            {{ form.name_on_card.errors }}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="mb-3">
                     <label for="{{ form.card_number.id_for_label }}" class="form-label" style="font-size: 1rem;">Número de tarjeta</label>
                     {{ form.card_number }}
+                    {% if form.card_number.errors %}
+                        <div class="alert alert-danger">
+                            {{ form.card_number.errors }}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="row">
                     <div class="col-6 mb-2">
                         <label for="{{ form.expiry_date.id_for_label }}" class="form-label" style="font-size: 1rem;">Vencimiento</label>
                         {{ form.expiry_date }}
+                        {% if form.expiry_date.errors %}
+                        <div class="alert alert-danger">
+                            {{ form.expiry_date.errors }}
+                        </div>
+                    {% endif %}
+                    
                     </div>
                     <div class="col-6 mb-3">
                         <label for="{{ form.card_code.id_for_label }}" class="form-label" style="font-size: 1rem;">CVV</label>
                         {{ form.card_code }}
+                        {% if form.card_code.errors %}
+                            <div class="alert alert-danger">
+                                {{ form.card_code.errors }}
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

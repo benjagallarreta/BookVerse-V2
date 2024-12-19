@@ -130,11 +130,18 @@ class PaymentView(View):
     def post(self, request):
         form = PaymentForm(request.POST)
         total = self.get_total(request.user)
+        
         if form.is_valid():
-            # Procesar el pago aquí
-            return redirect('generar_pedido')
+            # Aquí puedes agregar la lógica de procesamiento del pago
+            try:
+                # Procesar el pago
+                return redirect('generar_pedido')
+            except Exception as e:
+                form.add_error(None, "Error procesando el pago: {}".format(str(e)))
+        
+        # Si hay errores, mostrar el formulario con los errores
         context = {
             'form': form,
-            'total': total
+            'total': total,
         }
-        return render(request, 'payment.html', {'form': form})
+        return render(request, self.template_name, context)
