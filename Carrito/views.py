@@ -6,7 +6,7 @@ from django.views.generic import ListView, View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
-
+from django.db import transaction
 from Carrito.forms import PaymentForm
 from Home.models import Libro 
 from Carrito.models import Cart 
@@ -100,16 +100,28 @@ class CheckOutView(View):
 
         if total == Decimal('0.00'):
             return redirect('/')
+        context = {
+            'total': total,
+        }
+        # Obtener los elementos del carrito
+        carrito_items = Cart.objects.filter(usuario=request.user)
 
-        # Si se pasa de los 100,000 no puede realizar la compra, sino si puede
-        if total > Decimal('100000'):
-            return redirect('compra_rechazada')
-        else:
-            context = {
-                'total': total,
-            }
-            return redirect('pago')
+        # Verificar si hay suficiente stock para cada libro en el carrito
+        for item in carrito_items:
+            libro = item.libro
+            if libro.stock < item.cantidad:
+                # Si algún libro no tiene suficiente stock, redirigir a una página de error
+                return redirect('compra_rechazada')  # Cambiar a una vista con un mensaje específico si lo prefieres
+
+        # Si todo está bien, procesar la compra y decrementar el stock
+        with transaction.atomic():
+            for item in carrito_items:
+                libro = item.libro
+                libro.stock -= item.cantidad  # Decrementar el stock
+                libro.save()  # Guardar los cambios en la base de datos
         
+        # Redirigir al proceso de pago
+        return redirect('pago')        
 
 @method_decorator(login_required, name='dispatch')
 class PaymentView(View):

@@ -139,6 +139,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",  
     BASE_DIR / "static/Home",
     BASE_DIR / "static/Usuario",
+    BASE_DIR / "static/Imagenes",
 ]
 
 # Este es el directorio donde se recopilarán todos los archivos estáticos cuando ejecutes 'collectstatic'
