@@ -31,7 +31,11 @@
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
                                     <a class="btn btn-outline-dark mt-auto" href="{% url 'agregar_libro' isbn=libro.isbn %}">Agregar al carrito</a>
-                                    <i id="wishlist-icon-{{ libro.isbn }}" class="fas fa-heart ms-2" onclick="AgregarLibroWishList('{{ libro.isbn }}')" style="cursor: pointer;"></i>
+                                    <i id="wishlist-icon-{{ libro.isbn }}" 
+                                        class="fas fa-heart ms-2 {% if libro.isbn in wishlist_items %}text-danger{% endif %}" 
+                                        onclick="AgregarLibroWishList('{{ libro.isbn }}')" 
+                                        style="cursor: pointer;">
+                                    </i>
                                 </div>
                             </div>
                         </div>

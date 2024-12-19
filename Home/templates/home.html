@@ -44,7 +44,7 @@
                                     <button type="submit" class="btn btn-outline-dark mt-auto">Agregar al carrito</button>
                                 </form>
                                 <i id="wishlist-icon-{{ libro.isbn }}" 
-                                    class="fas fa-heart ms-2" 
+                                    class="fas fa-heart ms-2 {% if libro.isbn in wishlist_items %}text-danger{% endif %}" 
                                     onclick="AgregarLibroWishList('{{ libro.isbn }}')" 
                                     style="cursor: pointer;">
                                 </i>

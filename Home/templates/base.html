@@ -28,25 +28,27 @@
                 fetch(`/agregar_a_wishlist/${libroIsbn}/`, {
                     method: 'POST',
                     headers: {
-                        'X-CSRFToken': '{{ csrf_token }}',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
                     }
                 })
                 .then(response => {
                     if (response.redirected) {
-                        window.location.href = response.url; // Redirige al usuario a la página de inicio de sesión
+                        window.location.href = response.url;
                     } else {
                         return response.json();
                     }
                 })
                 .then(data => {
-                    if (data.in_wishlist) {
-                        heartIcon.classList.add('text-danger');
-                    } else {
-                        heartIcon.classList.remove('text-danger');
+                    if (data && typeof data.in_wishlist !== 'undefined') {
+                        if (data.in_wishlist) {
+                            heartIcon.classList.add('text-danger');
+                        } else {
+                            heartIcon.classList.remove('text-danger');
+                        }
                     }
                 })
                 .catch(error => console.error('Error:', error));
-            }        
+            }
         </script>
         
     </head>
