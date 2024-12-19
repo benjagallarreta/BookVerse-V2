@@ -10,6 +10,7 @@ class HomeView(ListView):
     template_name = 'home.html'
     context_object_name = 'libros'
     paginate_by = 20
+    ordering = ['titulo']
 
     def get_queryset(self):
         queryset = Libro.objects.all()

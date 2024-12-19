@@ -1,5 +1,5 @@
 
-from decimal import Decimal
+from decimal import ROUND_DOWN, Decimal
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, View
@@ -129,6 +129,11 @@ class PaymentView(View):
 
     def get_total(self, user):
         return Cart.objects.filter(usuario=user).aggregate(total=Sum('precio'))['total'] or Decimal('0.00')
+    
+    def get_total(self, user):
+        total = Cart.objects.filter(usuario=user).aggregate(total=Sum('precio'))['total'] or Decimal('0.00')
+        # Redondear a 2 decimales
+        return total.quantize(Decimal('0.01'), rounding=ROUND_DOWN)
 
     def get(self, request):
         form = PaymentForm()
