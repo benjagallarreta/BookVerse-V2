@@ -26,7 +26,8 @@ def obtener_libros(query, max_results=40):
         print(f"Error al obtener libros para la consulta '{query}': {response.status_code}")
         return []
 
-# Función para cargar libros en la base de datos
+import random
+
 def cargar_libros(genero):
     libros = obtener_libros(genero)
     for libro in libros:
@@ -40,6 +41,9 @@ def cargar_libros(genero):
         sinopsis = info.get('description', f"Libro sobre {genero}")
         portada = info.get('imageLinks', {}).get('thumbnail', None)
         editorial = info.get('publisher', 'Editorial desconocida')
+        precio = random.randint(12000, 40000)
+        # Genera un valor de stock aleatorio entre 0 y 100
+        stock = random.randint(0, 100)
 
         Libro.objects.create(
             titulo=titulo,
@@ -48,10 +52,13 @@ def cargar_libros(genero):
             isbn=isbn,
             genero=genero,
             editorial=editorial,
-            portada=portada
+            portada=portada,
+            stock=stock,
+            precio=precio
         )
 
-        print(f"Libro '{titulo}' creado.")
+        print(f"Libro '{titulo}' creado con stock {stock}.")
+
 
 # Cargar al menos 1000 libros distribuidos en los 10 géneros
 libros_por_genero = 100
